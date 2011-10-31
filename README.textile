@@ -15,5 +15,5 @@ h1. Использование
 
     Cryptopro::Signature.verify(:message => "message", :signature => "signature", :certificate => "certificate")
 
-Copyright (c) 2011 divineforest, evrone
+Copyright (c) 2011 divineforest, evrone.com
 This project rocks and uses MIT-LICENSE.
