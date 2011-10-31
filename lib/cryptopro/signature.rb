@@ -13,9 +13,9 @@ module Cryptopro
 
     # Options: message, signature, certificate
     def self.verify(options)
-      raise "Message required" if (options[:message].nil? || options[:message] == "")
-      raise "Signature required" if (options[:signature].nil? || options[:signature] == "")
-      raise "Certificate required" if (options[:certificate].nil? || options[:certificate] == "")
+      raise "Message required" if options[:message].blank?
+      raise "Signature required" if options[:signature].blank?
+      raise "Certificate required" if options[:certificate].blank?
 
       tmp_dir = create_temp_dir
       create_temp_files(tmp_dir, options)
