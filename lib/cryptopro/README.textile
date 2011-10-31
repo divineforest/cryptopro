@@ -1,0 +1,19 @@
+h1. CryptoPro
+
+ruby-wrapper for *nix CryptoPro CSP command line utility cryptcp
+
+Ruby-обёртка для утилиты командной строки cryptcp от CryptoPro CSP в никсах.
+Позволяет легко работать с ЭЦП из ruby.
+
+h1. Использование
+
+В Gemfile:
+
+    gem 'cryptopro'
+
+В коде:
+
+    Cryptopro::Signature.verify(:message => "message", :signature => "signature", :certificate => "certificate")
+
+Copyright (c) 2011 divineforest, evrone
+This project rocks and uses MIT-LICENSE.
