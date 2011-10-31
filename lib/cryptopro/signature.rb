@@ -63,7 +63,7 @@ module Cryptopro
         rescue Cocaine::ExitStatusError
           false
         rescue Cocaine::CommandNotFoundError => e
-          raise "Команда cryptcp не найдена"
+          raise "Command cryptcp was not found"
         end
       end
 
