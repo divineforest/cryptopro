@@ -8,7 +8,7 @@ Gem::Specification.new do |s|
   s.platform    = Gem::Platform::RUBY
   s.authors     = ["divineforest"]
   # s.email       = ["TODO: Write your email address"]
-  s.homepage    = ""
+  s.homepage    = "http://github.com/divineforest/cryptopro"
   s.summary     = %q{CryptoPro ruby-wrapper for linux}
   # s.description = %q{TODO: Write a gem description}
 
