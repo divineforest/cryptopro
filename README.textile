@@ -11,9 +11,13 @@ h1. Использование
 
     gem 'cryptopro'
 
-В коде:
+Проверка подписи:
 
     Cryptopro::Signature.verify(:message => "message", :signature => "signature", :certificate => "certificate")
+
+Получение сертификата в тестовом УЦ:
+
+    Cryptopro::Csr.issue_test_certificate(csr)
 
 Copyright (c) 2011 divineforest, evrone.com
 This project rocks and uses MIT-LICENSE.
