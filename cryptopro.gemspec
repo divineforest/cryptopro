@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
   s.authors     = ["divineforest"]
   # s.email       = ["TODO: Write your email address"]
   s.homepage    = "http://github.com/divineforest/cryptopro"
-  s.summary     = %q{CryptoPro ruby-wrapper for linux}
+  s.summary     = %q{CryptoPro ruby-wrapper for *nix}
   # s.description = %q{TODO: Write a gem description}
 
   s.rubyforge_project = "cryptopro"
@@ -19,5 +19,7 @@ Gem::Specification.new do |s|
   s.executables   = `git ls-files -- bin/*`.split("\n").map{ |f| File.basename(f) }
   s.require_paths = ["lib"]
 
+  s.add_dependency "json_pure"
   s.add_dependency "cocaine"
+  s.add_dependency "rest-client"
 end

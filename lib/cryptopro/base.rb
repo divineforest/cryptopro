@@ -29,6 +29,14 @@ module Cryptopro
       certificate_with_container = "-----BEGIN CERTIFICATE-----\n#{parts.join("\n")}\n-----END CERTIFICATE-----"
     end
 
+    # Делит длинную строку base64 на строки по 64 символа.
+    # Это требование cabinet.ekey.ru к запросам на выпуск сертификата (CSR).
+    def self.add_container_to_csr(cert_req)
+      stripted_body = cert_req.gsub("-----BEGIN CERTIFICATE REQUEST-----", '').gsub("-----END CERTIFICATE REQUEST-----", '').gsub(/[\r\n\s]/, '')
+      parts = stripted_body.scan(/.{1,#{CERTIFICATE_LINE_LENGTH}}/)
+      csr_with_container = "-----BEGIN CERTIFICATE REQUEST-----\n#{parts.join("\n")}\n-----END CERTIFICATE REQUEST-----"
+    end
+
     def self.create_temp_certificate_file(content)
       tmp_dir = create_temp_dir
       certificate_with_container = add_container_to_certificate(content)

@@ -9,19 +9,48 @@ h1. Использование
 
 В Gemfile:
 
-    gem 'cryptopro'
+bc. gem 'cryptopro'
 
-Проверка подписи:
+h2. Проверка подписи
 
-    Cryptopro::Signature.verify(:message => "message", :signature => "signature", :certificate => "certificate")
+bc. Cryptopro::Signature.verify(:message => "message", :signature => "signature", :certificate => "certificate")
 
-Получение сертификата в тестовом УЦ:
+h2. Получение сертификата в УЦ
 
-    Cryptopro::Csr.issue_test_certificate(csr)
+h3. Тестововый сертификат
 
-Получение информации по сертификату:
+bc. Cryptopro::Csr.issue_test_certificate(csr)
 
-    Cryptopro::Certificate.info(body)
+Совмещает в себе отправку запроса и получение тестового сертификата.
+
+h3. Полноценный сертификат
+
+h4. Запрос на выпуск сертификата
+
+bc. Cryptopro::Csr.issue(csr)
+
+На вход: csr в формате pem.
+Ответ: ruby hash в формате @{"created_request_id" => <number>}@ или @{"error" => <message>}@.
+
+p. Замечание: сокращенный пример запроса на сертификат (csr) в формате pem:
+
+bc. -----BEGIN CERTIFICATE REQUEST-----\nMIICTzCCAfwCAQAwggFEMT0wOwYDVQQDHjQEEAQ7BDUEOgRBBDAEPQQ0BEAAIAQfBDAEMgQ7BD4EMgQ4BEcAIAQSBDAEMgQ4BDsEPgQyMRUwEwYYVQUHHgwGHPQ\n-----END CERTIFICATE REQUEST-----
+
+h4. Получение готовых сертификатов из Удостоверяющего центра (УЦ/CA)
+
+bc. Cryptopro::Csr.get_certificates(request_ids)
+
+На вход: id сертификатов в очереди на выпуск (request_ids).
+Ответ: json в формате @[{"id" => <request_id>, "certificate" => <certificate_body>}@, если серт. еще не выпущен - @{"id" => <request_id>, "error" => "certificate is not ready yet"}]@.
+
+p. Замечание: значение по ключу @certificate@ – тело сертификата, то есть base64-строка (без BEGIN CERTIFICATE/END CERTIFICATE), разбитая на части по 64 символа каждая.
+Пример (сокращенная версия):
+
+bc. MIIDZjCCAxOgAwIBAgIKXaz9BwAAAADF1jAKBgYqhQMCAgMFADCBkjEeMBwGCSqG\nSIb3DQEJARYPY29udGFjdEBla2V5LnJ1MQswCQYDVQQGEwJSVTEVMBMGA1UEBwwM\n0JzQvtGB0LrQstCwMTcwNQYDVQQKn8HsQFSfy9BDG+A==\n
+
+h2. Получение информации по сертификату
+
+bc. Cryptopro::Certificate.info(body)
 
 Copyright (c) 2011 divineforest, evrone.com
 This project rocks and uses MIT-LICENSE.
